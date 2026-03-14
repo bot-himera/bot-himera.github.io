@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Химера Бот ТГ — Инструмент для OSINT 2026</title>
+    <meta name="description" content="Официальная информация: химера бот в телеграмм отзывы, пробив химера по номеру и поиск по фото в тг химера. Узнать актуальную ссылку на агрегатор.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <meta name="yandex-verification" content="3856a13b9b021081" />
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107704203', 'ym');
+
+        ym(107704203, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/107704203" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <style>
+        :root {
+            --bg-base: #f7f7f8;
+            --bg-surface: #ffffff;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --accent: #2c2c2c;
+            --border-light: #e6e6e6;
+            --font-sys: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 24px;
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 32px;
+            --space-container: 48px;
+            --space-lg: 80px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sys);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: underline;
+            text-decoration-color: #d0d0d0;
+            text-underline-offset: 4px;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+            text-decoration-color: var(--accent);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: var(--space-container) var(--space-md);
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            text-align: center;
+            padding: var(--space-container) 0 var(--space-lg);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background-color: var(--bg-surface);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-light);
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+        }
+
+        .badge svg {
+            width: 12px;
+            height: 12px;
+            margin-right: 6px;
+            fill: currentColor;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: var(--space-sm);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin: 0 auto var(--space-md);
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--text-main);
+            color: var(--bg-surface);
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); border: none;
+        }
+
+        .button svg {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .button:hover, .button:focus {
+            background-color: #333;
+            text-decoration: none;
+            color: var(--bg-surface);
+        }
+
+        /* --- Grid & Cards --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            stroke: var(--text-muted);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* --- Content Blocks --- */
+        article section {
+            margin-bottom: var(--space-lg);
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-container);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.01);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-sm);
+        }
+
+        p {
+            margin-bottom: var(--space-sm);
+        }
+
+        .warning-box {
+            background-color: #fafafa;
+            border-left: 4px solid var(--accent);
+            padding: var(--space-sm) var(--space-md);
+            margin: var(--space-sm) 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            padding-top: var(--space-md);
+            margin-top: var(--space-lg);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            article section {
+                padding: var(--space-md);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <header>
+            <div class="badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+                OSINT 2026
+            </div>
+            <h1>Химера Бот в Телеграмм</h1>
+            <p class="subtitle">Передовой инструмент для поиска данных, аналитики и разведки. Актуальная рабочая сеть без блокировок.</p>
+            <a href="https://t.me/informaciapoiskovikbot" class="button">
+                Запустить Агрегатор
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </header>
+
+        <main>
+            <!-- Grid Features -->
+            <div class="features-grid">
+                <div class="card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        Пробив по номеру
+                    </h3>
+                    <p>Функция обогащения данных: узнайте ФИО, оператора, регион, а также расшифровку того, как абонент записан в телефонных книгах.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        Поиск по @username
+                    </h3>
+                    <p>Достаточно указать никнейм или ID из Telegram, чтобы скрипт (химера поиск телеграмм) нашел скрытый привязанный мобильный телефон.</p>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        Поиск по фото
+                    </h3>
+                    <p>Модуль неросети FaceMatch. Поиск по фото в тг химера сопоставляет лица со страницами во ВКонтакте (VK) и Одноклассниках.</p>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                        Автомобили и Недвижимость
+                    </h3>
+                    <p>Проверка авто по госномеру и VIN (история владельцев, ДТП, штрафы), а также анализ задолженностей ФССП (база приставов).</p>
+                </div>
+            </div>
+
+            <!-- Deep Dive Content -->
+            <article>
+                <section>
+                    <h2>Зачем ищут Бот Химера?</h2>
+                    <p>Тысячи пользователей ежемесячно вбивают ключи <strong>himera bot</strong> или <strong>химера бот тг</strong> для поиска безопасного OSINT-решения. Оригинальные инструменты для деанонимизации часто попадают под блокировки мессенджера (бан каналов), из-за чего приходится постоянно искать рабочие зеркала.</p>
+                    <p>Объединенный агрегатор заменяет старый <em>химера серч бот</em>, предлагая единую стабильную веб-точку входа. Это исключает необходимость подписываться на десятки сомнительных <em>химера тг</em> каналов.</p>
+                </section>
+
+                <section>
+                    <h2>Бот Химера Отзывы и Вопросы Безопасности</h2>
+                    <p>При поиске "<em>химера бот в телеграмм отзывы</em>" пользователи часто рассказывают про мошеннические клоны. Важно понимать: агрегаторы поиска никогда не работают по принципу "скачайте файл" или "введите SMS-код".</p>
+                    
+                    <div class="warning-box">
+                        <strong>Осторожно, фишинг!</strong><br>
+                        Если некий ресурс, прикидывающийся как <em>химера бот телеграмм бесплатно</em>, просит вас ввести код подтверждения из Telegram для авторизации — это попытка угона вашего аккаунта (сессии).
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Как начать работу с аналогом?</h2>
+                    <p>Вместо того чтобы искать <em>himera search telegram bot</em> среди сотен подделок, используйте проверенный агрегатор OSINT 2026. Он позволяет делать бесплатные демо-запросы, чтобы вы могли увидеть частично скрытый ответ (например, оператора связи) и убедиться, что информация существует в базе, прежде чем покупать полный отчет (<em>химера пробивы</em>).</p>
+                    <p>Проверьте любой номер или аккаунт прямо сейчас:</p>
+                    <div style="margin-top: 24px;">
+                        <a href="https://sherlok-bot.github.io/" class="button">
+                            Перейти к безопасному поиску
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </main>
+
+        <footer>
+            <p>Данный сайт является независимым обзором инструментов разведки OSINT.<br> 
+            Информация структурирована для безопасного ответа на запросы <em>бот для пробива химера</em>, <em>himera search bot</em>.</p>
+            <p style="margin-top: 10px;">&copy; 2026. Secure OSINT Gateway.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
